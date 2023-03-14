@@ -18,13 +18,14 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
+    "import/no-extraneous-dependencies": "off",
     "react/prop-types": "off",
     "no-console": "error",
     "no-param-reassign": [
       "error",
       {
         props: true,
-        ignorePropertyModificationsFor: ["state"],
+        ignorePropertyModificationsFor: ["state", "config"],
       },
     ],
     "react/function-component-definition": "off",
