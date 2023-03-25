@@ -19,20 +19,22 @@ export const registration = createAsyncThunk(
                 email,
                 password,
             });
-            localStorage.setItem('token', res.data.accessToken);
-            return thunkAPI.fulfillWithValue(res.data.user);
+            return res.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.res.data.message);
         }
     }
 );
 
-export const login = createAsyncThunk('user/login', async (data, thunkAPI) => {
+export const login = createAsyncThunk('/login', async (data, thunkAPI) => {
     try {
         const { email, password } = data;
-        const res = await instance.post('/login', { email, password });
+        const res = await instance.post('/login', {
+            email,
+            password,
+        });
         localStorage.setItem('token', res.data.accessToken);
-        return thunkAPI.fulfillWithValue(res.data.user);
+        return res.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.res.data.message);
     }
